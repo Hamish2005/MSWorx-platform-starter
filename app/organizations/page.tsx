@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Libre_Franklin, Playfair_Display } from "next/font/google";
 
 const playfair = Playfair_Display({
@@ -174,12 +175,27 @@ export default function OrganizationsPage() {
     <main className={`${playfair.variable} ${libre.variable} org-page`}>
       <nav className="org-nav">
         <div className="org-container org-nav-inner">
-          <Link href="/" className="org-logo">
-            MSWorx Learning <span>Education & Training for Nonprofits</span>
+          <Link href="/" className="org-logo" aria-label="MSWorx Learning home">
+            <Image
+              src="/msworx-logo.png"
+              alt="MSWorx Learning"
+              width={168}
+              height={168}
+              className="org-logo-image"
+              priority
+            />
+            <span>Organization Training Portals</span>
           </Link>
-          <a href="#start" className="org-nav-cta">
-            Start the Conversation
-          </a>
+          <div className="org-nav-links" aria-label="Organization page navigation">
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <Link href="/courses">Catalog</Link>
+          </div>
+          <div className="org-nav-actions">
+            <a href="#start" className="org-nav-cta">
+              Schedule Consultation
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -439,7 +455,7 @@ export default function OrganizationsPage() {
         </div>
       </section>
 
-      <section className="org-section org-faq">
+      <section className="org-section org-faq" id="faq">
         <div className="org-narrow">
           <div className="org-section-head">
             <h2>
@@ -566,13 +582,48 @@ export default function OrganizationsPage() {
           color: var(--teal-dark);
         }
 
+        .org-logo {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        }
+
+        .org-logo-image {
+          width: auto;
+          height: 58px;
+          object-fit: contain;
+        }
+
         .org-logo span {
-          margin-left: 4px;
           color: var(--gold);
           font-family: var(--font-org-display), Georgia, serif;
           font-size: 14px;
           font-style: italic;
           font-weight: 400;
+        }
+
+        .org-nav-links {
+          display: flex;
+          align-items: center;
+          gap: 28px;
+          margin-left: auto;
+        }
+
+        .org-nav-links a {
+          color: var(--teal-deep);
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+        }
+
+        .org-nav-links a:hover {
+          color: var(--gold);
+        }
+
+        .org-nav-actions {
+          display: flex;
+          align-items: center;
         }
 
         .org-nav-cta,
@@ -1285,6 +1336,10 @@ export default function OrganizationsPage() {
             margin-bottom: 48px;
           }
 
+          .org-nav-links {
+            display: none;
+          }
+
           .org-logo span {
             display: none;
           }
@@ -1293,11 +1348,19 @@ export default function OrganizationsPage() {
         @media (max-width: 640px) {
           .org-nav-inner,
           .org-footer-inner {
-            align-items: flex-start;
-            flex-direction: column;
+            align-items: center;
+            flex-direction: row;
           }
 
-          .org-nav-cta,
+          .org-logo-image {
+            height: 50px;
+          }
+
+          .org-nav-cta {
+            padding: 10px 14px;
+            font-size: 12px;
+          }
+
           .org-btn {
             width: 100%;
           }
