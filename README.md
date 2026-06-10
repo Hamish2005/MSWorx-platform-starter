@@ -1,43 +1,71 @@
-# Next.js on Netlify Platform Starter
+# MSWorx Learning Website
 
-[Live Demo](https://nextjs-platform-starter.netlify.app/)
+Premium course catalog and learning portal front door for MSWorx Learning.
 
-A modern starter based on Next.js 16 (App Router), Tailwind, and [Netlify Core Primitives](https://docs.netlify.com/core/overview/#develop) (Edge Functions, Image CDN, Blob Store).
+The site is built with Next.js, Tailwind CSS, and Framer Motion. It connects the
+public course catalog to SkyPrep for learning delivery, Stripe for checkout, and
+GA4 for funnel analytics.
 
-In this site, Netlify Core Primitives are used both implictly for running Next.js features (e.g. Route Handlers, image optimization via `next/image`, and more) and also explicitly by the user code.
+## Local Development
 
-Implicit usage means you're using any Next.js functionality and everything "just works" when deployed - all the plumbing is done for you. Explicit usage is framework-agnostic and typically provides more features than what Next.js exposes.
-
-## Deploying to Netlify
-
-Click the button below to deploy this template to your Netlify account.
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/next-platform-starter)
-
-## Developing Locally
-
-1. Clone this repository, then run `npm install` in its root directory.
-
-2. For the starter to have full functionality locally (e.g. edge functions, blob store), please ensure you have an up-to-date version of Netlify CLI. Run:
-
-```
-npm install netlify-cli@latest -g
+```bash
+npm run dev
 ```
 
-3. Link your local repository to the deployed Netlify site. This will ensure you're using the same runtime version for both local development and your deployed site.
+Open `http://localhost:3000`.
 
-```
-netlify link
-```
+## Commands
 
-4. Then, run the Next.js development server via Netlify CLI:
-
-```
-netlify dev
+```bash
+npm run lint
+npm run build
 ```
 
-If your browser doesn't navigate to the site automatically, visit [localhost:8888](http://localhost:8888).
+Run both before deploys or larger changes.
 
-## Resources
+## Project Map
 
-- Check out the [Next.js on Netlify docs](https://docs.netlify.com/frameworks/next-js/overview/)
+- `app/` - routes, pages, and API handlers
+- `components/` - shared UI components
+- `components/home/` - homepage sections
+- `components/catalog/` - course catalog UI pieces
+- `data/course-prices.json` - public price mapping by SkyPrep course ID
+- `lib/catalog/` - catalog filtering and cart helpers
+- `lib/ai/` - AI finder data and scoring utilities
+- `lib/backend/core/` - stable server integrations such as Stripe and SkyPrep
+- `lib/backend/ai/` - server-side AI pathway logic
+- `docs/integrations.md` - setup notes for Stripe, SkyPrep, GA4, and webhooks
+
+## Environment
+
+Create `.env.local` from `.env.example`. Never commit real secrets.
+
+Core values:
+
+```txt
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+SKYPREP_API_KEY=
+SKYPREP_ACCT_KEY=
+NEXT_PUBLIC_GA_MEASUREMENT_ID=
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+## Pricing
+
+Course prices are intentionally not stored in `.env.local`. Manage them in:
+
+```txt
+data/course-prices.json
+```
+
+Prices are keyed by SkyPrep course ID and stored in cents.
+
+## Integration Flow
+
+1. SkyPrep provides course records and course IDs.
+2. `data/course-prices.json` marks which courses are purchasable.
+3. Learners add one or more courses to the cart.
+4. Stripe Checkout collects payment.
+5. Stripe webhooks enroll the learner into the selected SkyPrep courses.
+6. GA4 tracks catalog and checkout behavior.

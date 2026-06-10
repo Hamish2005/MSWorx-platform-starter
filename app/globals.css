@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf6ef;
+  --foreground: #24302f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Libre Franklin", Arial, Helvetica, sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Libre Franklin", Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+.font-serif {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
