@@ -7,6 +7,8 @@ import {
 } from "@/lib/backend/core/airtable";
 import { enrichCoursesWithPricing } from "@/lib/course-pricing";
 
+const canUseMockCatalog = process.env.NODE_ENV !== "production";
+
 function normalizeCourseTitle(value?: string) {
   return (value ?? "")
     .toLowerCase()
@@ -118,7 +120,7 @@ export async function getCatalogCourses() {
     if (airtableCourses.length > 0) {
       return enrichCoursesWithPricing(airtableCourses);
     }
-  } catch {
+  } catch (error) {
     try {
       const airtableCourses = await getAirtableCatalogCourses();
 
@@ -128,6 +130,14 @@ export async function getCatalogCourses() {
     } catch {
       // Fall through to mock courses so local UI still renders if integrations are unavailable.
     }
+
+    if (!canUseMockCatalog) {
+      throw error;
+    }
+  }
+
+  if (!canUseMockCatalog) {
+    throw new Error("Catalog integrations are not configured for production.");
   }
 
   return enrichCoursesWithPricing(
