@@ -52,6 +52,7 @@ export type WebsiteCourse = {
   priceLabel?: string;
   purchasable?: boolean;
   status?: string;
+  goLiveDate?: string;
   tags?: string[];
   creator?: string;
   introduction?: string;

@@ -11,6 +11,24 @@ type EnrollmentCartProps = {
   onCheckout: () => void;
 };
 
+function formatGoLiveDate(value?: string) {
+  if (!value) {
+    return undefined;
+  }
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(date);
+}
+
 export function EnrollmentCart({
   courses,
   totalLabel,
@@ -21,6 +39,10 @@ export function EnrollmentCart({
   onRemoveCourse,
   onCheckout,
 }: EnrollmentCartProps) {
+  const scheduledCourses = courses.filter(
+    (course) => course.status?.trim().toLowerCase() === "scheduled",
+  );
+
   return (
     <aside className="mt-6 rounded border border-[#d8cbb9] bg-white p-5 shadow-[0_12px_30px_rgba(36,48,47,0.06)]">
       <div className="grid gap-5 lg:grid-cols-[1fr_0.8fr_auto] lg:items-end">
@@ -54,6 +76,20 @@ export function EnrollmentCart({
               </p>
             )}
           </div>
+          {scheduledCourses.length > 0 ? (
+            <div className="mt-4 rounded border border-[#e7dccd] bg-[#FAF6EF] p-3 text-xs font-semibold leading-5 text-[#4f5f5c]">
+              {scheduledCourses.length === 1 ? (
+                <p>
+                  {scheduledCourses[0].title} can be purchased now, but access begins{" "}
+                  {formatGoLiveDate(scheduledCourses[0].goLiveDate) ?? "on the scheduled launch date"}.
+                </p>
+              ) : (
+                <p>
+                  This cart includes scheduled courses. You can purchase now, but access begins on each course&apos;s scheduled launch date.
+                </p>
+              )}
+            </div>
+          ) : null}
         </div>
 
         <div>

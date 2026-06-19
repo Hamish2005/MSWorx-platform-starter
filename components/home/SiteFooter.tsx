@@ -16,7 +16,7 @@ export function SiteFooter() {
           <p className="mt-3 max-w-md text-sm leading-6 text-[#4f5f5c]">
             Equip. Empower. Lead.
           </p>
-          <p className="mt-2 text-sm text-[#4f5f5c]">hello@msworx.co</p>
+          <p className="mt-2 text-sm text-[#4f5f5c]">support@msworx.co</p>
         </div>
         <div className="grid gap-3 text-sm font-semibold text-[#4f5f5c] sm:grid-cols-2">
           {footerLinks.map(([label, href]) => (

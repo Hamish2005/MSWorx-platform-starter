@@ -23,7 +23,7 @@ export function AudienceSection() {
           {audiences.map((audience) => (
             <motion.article
               key={audience.id}
-              variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { y: 18 }, show: { y: 0 } }}
               whileHover={{ y: -4 }}
               className="rounded border border-[#e7dccd] bg-white p-6 shadow-[0_12px_30px_rgba(36,48,47,0.06)]"
             >

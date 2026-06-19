@@ -24,7 +24,7 @@ export function InstructorSection() {
           {instructors.map((item) => (
             <motion.div
               key={item}
-              variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { y: 18 }, show: { y: 0 } }}
               className="rounded border border-white/20 bg-white p-5 text-[#24302f]"
             >
               <p className="text-xl font-bold">{item}</p>

@@ -18,8 +18,8 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={prefersReducedMotion ? false : { opacity: 0, x, y }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      initial={prefersReducedMotion ? false : { x, y }}
+      whileInView={{ x: 0, y: 0 }}
       viewport={{ once: true, amount: 0.12, margin: "0px 0px -80px 0px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >

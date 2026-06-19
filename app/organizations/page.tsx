@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Libre_Franklin, Playfair_Display } from "next/font/google";
+import { SiteHeader } from "@/components/SiteHeader";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -173,31 +173,7 @@ function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?:
 export default function OrganizationsPage() {
   return (
     <main className={`${playfair.variable} ${libre.variable} org-page`}>
-      <nav className="org-nav">
-        <div className="org-container org-nav-inner">
-          <Link href="/" className="org-logo" aria-label="MSWorx Learning home">
-            <Image
-              src="/msworx-logo.png"
-              alt="MSWorx Learning"
-              width={168}
-              height={168}
-              className="org-logo-image"
-              priority
-            />
-            <span>Organization Training Portals</span>
-          </Link>
-          <div className="org-nav-links" aria-label="Organization page navigation">
-            <a href="#pricing">Pricing</a>
-            <a href="#faq">FAQ</a>
-            <Link href="/courses">Catalog</Link>
-          </div>
-          <div className="org-nav-actions">
-            <a href="#start" className="org-nav-cta">
-              Schedule Consultation
-            </a>
-          </div>
-        </div>
-      </nav>
+      <SiteHeader />
 
       <header className="org-hero">
         <div className="org-container org-hero-inner">
@@ -485,10 +461,10 @@ export default function OrganizationsPage() {
             environment looks like for your organization.
           </p>
           <div className="org-cta-buttons">
-            <a href="https://calendly.com/msworx/demo" className="org-btn org-btn-primary">
+            <a href="https://calendly.com/mswllc/msworx-demo" className="org-btn org-btn-primary">
               Schedule a Demo
             </a>
-            <a href="mailto:hello@msworx.co" className="org-btn org-btn-ghost">
+            <a href="mailto:support@msworx.co" className="org-btn org-btn-ghost">
               Request Pricing
             </a>
           </div>
@@ -895,6 +871,14 @@ export default function OrganizationsPage() {
           padding: 40px 32px;
         }
 
+        .org-stage:hover,
+        .org-diff-card:hover,
+        .org-bundle-card:hover,
+        .org-setup-card:hover,
+        .org-who-card:hover {
+          transform: translateY(-4px);
+        }
+
         .org-stage-num {
           margin-bottom: 16px;
           color: var(--gold-soft);
@@ -1125,6 +1109,12 @@ export default function OrganizationsPage() {
           border: 1px solid rgba(250, 246, 239, 0.15);
           background: rgba(250, 246, 239, 0.04);
           padding: 52px 44px;
+        }
+
+        .org-addon-card:hover {
+          border-color: rgba(189, 146, 39, 0.5);
+          background: rgba(250, 246, 239, 0.07);
+          transform: translateY(-4px);
         }
 
         .org-addon-card::after {
@@ -1374,6 +1364,18 @@ export default function OrganizationsPage() {
           .org-diff-card,
           .org-addon-card {
             padding: 28px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .org-stage,
+          .org-diff-card,
+          .org-bundle-card,
+          .org-setup-card,
+          .org-addon-card,
+          .org-who-card {
+            transform: none !important;
+            transition: none;
           }
         }
       `,

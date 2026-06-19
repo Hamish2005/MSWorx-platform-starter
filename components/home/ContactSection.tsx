@@ -22,7 +22,7 @@ export function ContactSection() {
         </motion.div>
         <motion.form
           className="grid gap-3"
-          action="mailto:hello@msworx.co"
+          action="mailto:support@msworx.co"
           method="post"
           encType="text/plain"
           {...fadeUp}
@@ -39,7 +39,7 @@ export function ContactSection() {
             placeholder="Email address"
             className="min-h-12 rounded border border-[#d8cbb9] bg-[#FAF6EF] px-4 text-sm text-[#24302f] outline-none transition placeholder:text-[#7c8884] focus:border-[#116466] focus:ring-2 focus:ring-[#116466]/20"
           />
-          <ButtonLink href="mailto:hello@msworx.co?subject=MSWorx%20Learning%20Updates">
+          <ButtonLink href="mailto:support@msworx.co?subject=MSWorx%20Learning%20Updates">
             Contact MSWorx
           </ButtonLink>
         </motion.form>

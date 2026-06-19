@@ -7,8 +7,31 @@ type CourseCardProps = {
   onReadIntroduction: (course: WebsiteCourse) => void;
 };
 
+function formatGoLiveDate(value?: string) {
+  if (!value) {
+    return undefined;
+  }
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(date);
+}
+
 export function CourseCard({ course, inCart, onToggle, onReadIntroduction }: CourseCardProps) {
-  const isReviewCourse = course.status?.trim().toLowerCase() === "review";
+  const normalizedStatus = course.status?.trim().toLowerCase();
+  const isReviewCourse = normalizedStatus === "review";
+  const isScheduledCourse = normalizedStatus === "scheduled";
+  const comingOnLabel = isScheduledCourse
+    ? `Access starts${course.goLiveDate ? ` ${formatGoLiveDate(course.goLiveDate)}` : " soon"}`
+    : undefined;
 
   return (
     <article className="group flex min-h-[320px] flex-col rounded border border-[#e7dccd] bg-white p-5 shadow-[0_12px_30px_rgba(36,48,47,0.06)] transition hover:-translate-y-1 focus-within:-translate-y-1">
@@ -37,7 +60,9 @@ export function CourseCard({ course, inCart, onToggle, onReadIntroduction }: Cou
         {course.certificate ? (
           <span className="rounded bg-[#FAF6EF] px-2 py-1">Certificate</span>
         ) : null}
-        {course.status ? (
+        {comingOnLabel ? (
+          <span className="rounded bg-[#FAF6EF] px-2 py-1">{comingOnLabel}</span>
+        ) : course.status && !isReviewCourse ? (
           <span className="rounded bg-[#FAF6EF] px-2 py-1">{course.status}</span>
         ) : null}
       </div>
@@ -60,6 +85,11 @@ export function CourseCard({ course, inCart, onToggle, onReadIntroduction }: Cou
           Read introduction
         </button>
       ) : null}
+      {comingOnLabel ? (
+        <p className="mt-4 rounded border border-[#e7dccd] bg-[#FAF6EF] px-3 py-2 text-xs font-semibold leading-5 text-[#4f5f5c]">
+          You can purchase now. Course access will not begin until {formatGoLiveDate(course.goLiveDate) ?? "the scheduled launch date"}.
+        </p>
+      ) : null}
       <div className="mt-auto pt-6">
         <button
           type="button"
@@ -77,9 +107,13 @@ export function CourseCard({ course, inCart, onToggle, onReadIntroduction }: Cou
           {inCart
             ? "Added to cart"
             : course.purchasable
-              ? "Add to cart"
+              ? isScheduledCourse
+                ? "Reserve seat"
+                : "Add to cart"
+              : comingOnLabel
+                ? comingOnLabel
               : isReviewCourse
-                ? "In review"
+                ? "Coming soon"
                 : "Price needed"}
         </button>
       </div>

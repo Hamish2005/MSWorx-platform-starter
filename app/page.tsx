@@ -1,4 +1,3 @@
-import { CourseFinder } from "@/components/CourseFinder";
 import { SiteHeader } from "@/components/SiteHeader";
 import { AboutSection } from "@/components/home/AboutSection";
 import { AudienceSection } from "@/components/home/AudienceSection";
@@ -15,7 +14,6 @@ export default function Home() {
       <HomeHero />
       <AudienceSection />
       <FeaturedCoursesSection />
-      <CourseFinder />
       <AboutSection />
       <InstructorSection />
       <ContactSection />

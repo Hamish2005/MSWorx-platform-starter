@@ -55,6 +55,7 @@ async function mergeAirtableMetadata(courses: Awaited<ReturnType<typeof getWebsi
           skyprepCourseId: metadata.skyprepCourseId,
           priceCents: metadata.priceCents,
           status: metadata.status,
+          goLiveDate: metadata.goLiveDate,
           tags: metadata.tags,
           creator: metadata.creator,
           introduction: metadata.description,
@@ -69,6 +70,7 @@ async function mergeAirtableMetadata(courses: Awaited<ReturnType<typeof getWebsi
         category: metadata.category || course.category,
         priceCents: metadata.priceCents,
         status: metadata.status,
+        goLiveDate: metadata.goLiveDate,
         tags: metadata.tags,
         creator: metadata.creator,
         moduleCount: metadata.moduleCount ?? course.moduleCount,
@@ -102,6 +104,7 @@ async function getAirtableCatalogCourses() {
       skyprepCourseId: course.skyprepCourseId,
       priceCents: course.priceCents,
       status: course.status,
+      goLiveDate: course.goLiveDate,
       tags: course.tags,
       creator: course.creator,
     }));

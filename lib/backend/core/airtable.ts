@@ -27,6 +27,7 @@ export type AirtableCourseMetadata = {
   skyprepCourseId: string;
   priceCents?: number;
   status?: string;
+  goLiveDate?: string;
   tags: string[];
   creator?: string;
   category?: string;
@@ -162,6 +163,16 @@ function normalizeAirtableCourse(record: AirtableRecord): AirtableCourseMetadata
     skyprepCourseId,
     priceCents: parsePriceCents(getField(fields, ["Price", "Course Price", "priceCents", "Price Cents"])),
     status: stringifyField(getField(fields, ["Status", "Course Status", "Publish Status"])),
+    goLiveDate: stringifyField(
+      getField(fields, [
+        "Date Will Go Live",
+        "Will Go Live Date",
+        "Go Live Date",
+        "Go-Live Date",
+        "Live Date",
+        "Launch Date",
+      ]),
+    ),
     tags: uniqueList(
       [
         primaryCategory,

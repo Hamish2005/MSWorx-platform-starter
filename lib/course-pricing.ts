@@ -28,12 +28,12 @@ export function formatPrice(priceCents?: number, currency = pricing.currency) {
   }).format((priceCents ?? 0) / 100);
 }
 
-function isLiveCourseStatus(status?: string) {
+function isPurchasableCourseStatus(status?: string) {
   if (!status) {
     return true;
   }
 
-  return status.trim().toLowerCase() === "live";
+  return ["live", "scheduled"].includes(status.trim().toLowerCase());
 }
 
 export function enrichCourseWithPricing(course: WebsiteCourse): WebsiteCourse {
@@ -47,7 +47,7 @@ export function enrichCourseWithPricing(course: WebsiteCourse): WebsiteCourse {
     priceCents,
     currency,
     priceLabel: formatPrice(priceCents, currency),
-    purchasable: hasPrice && isLiveCourseStatus(course.status),
+    purchasable: hasPrice && isPurchasableCourseStatus(course.status),
   };
 }
 

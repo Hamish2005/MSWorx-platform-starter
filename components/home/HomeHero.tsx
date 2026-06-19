@@ -51,7 +51,7 @@ export function HomeHero() {
             <div className="border-b border-[#e7dccd] pb-4">
               <p className="text-sm font-bold text-[#116466]">Catalog launch focus</p>
               <p className="mt-1 text-sm text-[#6d7875]">
-                Initial AI Track courses with room for compliance and role-based paths.
+                Initial frontline courses with room for compliance and role-based paths.
               </p>
             </div>
             <div className="mt-5 space-y-4">

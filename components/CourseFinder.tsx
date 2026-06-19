@@ -172,7 +172,7 @@ export function CourseFinder({ courses }: { courses?: WebsiteCourse[] }) {
                 View Catalog
               </ButtonLink>
               <ButtonLink
-                href="mailto:hello@msworx.co?subject=Course%20Finder%20Question"
+                href="mailto:support@msworx.co?subject=Course%20Finder%20Question"
                 variant="light"
               >
                 Ask for Guidance

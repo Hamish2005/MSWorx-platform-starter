@@ -5,10 +5,10 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { CheckoutAnalytics } from "@/components/CheckoutAnalytics";
 import { CheckoutStatusNotice } from "@/components/CheckoutStatusNotice";
 import { CourseCatalog } from "@/components/CourseCatalog";
-import { CourseFinder } from "@/components/CourseFinder";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SiteHeader } from "@/components/SiteHeader";
+import { FeaturedCoursesSection } from "@/components/home/FeaturedCoursesSection";
 import { getCatalogCourses } from "@/lib/courses";
 
 export const dynamic = "force-dynamic";
@@ -45,13 +45,16 @@ export default async function CoursesPage() {
               Practical learning paths for nonprofit frontline work.
             </h1>
             <p className="mt-6 text-lg leading-8 text-[#4f5f5c]">
-              Browse the launch catalog preview, explore tracks, and use the AI
-              Course Finder to choose a starting point.
+              Browse the launch catalog preview, compare available courses, and
+              choose a starting point for your team or individual learning path.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="#featured-courses" variant="gold">
+                Featured Series
+              </ButtonLink>
               <ButtonLink href="#catalog">Browse Catalog</ButtonLink>
-              <ButtonLink href="#ai-course-finder" variant="secondary">
-                Use Course Finder
+              <ButtonLink href="/organizations" variant="secondary">
+                For Organizations
               </ButtonLink>
             </div>
           </Reveal>
@@ -91,6 +94,8 @@ export default async function CoursesPage() {
         </div>
       </section>
 
+      <FeaturedCoursesSection sectionId="featured-courses" />
+
       <section id="catalog" className="px-5 py-20 sm:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
@@ -102,8 +107,6 @@ export default async function CoursesPage() {
           <CourseCatalog courses={courses} />
         </div>
       </section>
-
-      <CourseFinder courses={courses} />
 
       <footer className="border-t border-[#e7dccd] bg-white px-5 py-8 sm:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
