@@ -20,9 +20,6 @@ export function FeaturedCoursesSection({ sectionId = "courses" }: { sectionId?: 
             {shiftSeries.description}
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            <span className="rounded border border-[#e7dccd] bg-[#FAF6EF] px-3 py-2 text-xs font-bold uppercase tracking-[0.1em] text-[#116466]">
-              SkyPrep ID {shiftSeries.skyprepCourseId}
-            </span>
             <span className="rounded border border-[#e7dccd] bg-[#FAF6EF] px-3 py-2 text-xs font-bold uppercase tracking-[0.1em] text-[#4f5f5c]">
               {shiftSeries.subtitle}
             </span>

@@ -4,7 +4,7 @@ export const navItems = [
   ["Learners", "/#learners"],
   ["Courses", "/courses#catalog"],
   ["Organizations", "/organizations"],
-  ["Instructors", "https://www.msworx.co/instructors"],
+  ["Instructors", "/instructors"],
   ["Contact", "/#contact"],
 ];
 
@@ -27,7 +27,7 @@ export const audiences = [
     id: "instructors",
     title: "For Instructors",
     text: "A path for field practitioners to turn expertise into structured learning without managing platform infrastructure.",
-    href: "https://www.msworx.co/instructors",
+    href: "/instructors",
     cta: "Teach with MSWorx",
   },
 ];
@@ -99,9 +99,18 @@ export const shiftPaymentTiers = [
 ];
 
 export const proofPoints = [
-  "Built for homelessness services, housing policy, domestic violence, behavioral health, and human services.",
-  "Rooted in roughly 20 years of direct field experience and HUD-recognized technical assistance.",
-  "Designed to connect public catalog discovery with SkyPrep learning at learn.msworx.co.",
+  {
+    title: "Twenty years on the frontline.",
+    text: "Continuum of Care operations. Direct service. Technical assistance the Department of Housing and Urban Development recognized. She did the work before she taught it.",
+  },
+  {
+    title: "Built for the people doing the work.",
+    text: "Frontline workers get handed impossible jobs and thin training. When the training is weak, the person in front of them pays for it. This platform is built so that stops.",
+  },
+  {
+    title: "Training that sounds like the work.",
+    text: "No abstraction. No filler. Plain language, earned from experience, aimed at the moment a worker is actually in.",
+  },
 ];
 
 export const instructors = ["Frontline practitioners", "Nonprofit leaders", "Training specialists"];
@@ -109,7 +118,7 @@ export const instructors = ["Frontline practitioners", "Nonprofit leaders", "Tra
 export const footerLinks = [
   ["Courses", "/courses"],
   ["Organizations", "/organizations"],
-  ["Instructors", "https://www.msworx.co/instructors"],
+  ["Instructors", "/instructors"],
   ["Learning Login", learningUrl],
   ["Contact", "/#contact"],
 ];

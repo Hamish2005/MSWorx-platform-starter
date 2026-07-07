@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ButtonLink } from "@/components/ButtonLink";
 import { fadeUp } from "@/lib/animation";
 
 export function ContactSection() {
@@ -16,17 +15,37 @@ export function ContactSection() {
             Get catalog updates and launch notes.
           </h2>
           <p className="mt-4 text-base leading-7 text-[#4f5f5c]">
-            Newsletter signup will connect to Growth Hub 365 for course updates,
-            instructor news, and launch communications.
+            Join the MSWorx Learning list for course updates, instructor news,
+            and launch communications.
           </p>
         </motion.div>
         <motion.form
+          name="newsletter-signup"
           className="grid gap-3"
-          action="mailto:support@msworx.co"
+          action="/?newsletter=success#contact"
           method="post"
-          encType="text/plain"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
           {...fadeUp}
         >
+          <input type="hidden" name="form-name" value="newsletter-signup" />
+          <p className="hidden">
+            <label>
+              Do not fill this out if you are human: <input name="bot-field" />
+            </label>
+          </p>
+          <label className="sr-only" htmlFor="newsletter-name">
+            Name
+          </label>
+          <input
+            id="newsletter-name"
+            name="name"
+            type="text"
+            required
+            suppressHydrationWarning
+            placeholder="Name"
+            className="min-h-12 rounded border border-[#d8cbb9] bg-[#FAF6EF] px-4 text-sm text-[#24302f] outline-none transition placeholder:text-[#7c8884] focus:border-[#116466] focus:ring-2 focus:ring-[#116466]/20"
+          />
           <label className="sr-only" htmlFor="email">
             Email address
           </label>
@@ -39,9 +58,13 @@ export function ContactSection() {
             placeholder="Email address"
             className="min-h-12 rounded border border-[#d8cbb9] bg-[#FAF6EF] px-4 text-sm text-[#24302f] outline-none transition placeholder:text-[#7c8884] focus:border-[#116466] focus:ring-2 focus:ring-[#116466]/20"
           />
-          <ButtonLink href="mailto:support@msworx.co?subject=MSWorx%20Learning%20Updates">
-            Contact MSWorx
-          </ButtonLink>
+          <button
+            type="submit"
+            className="min-h-12 rounded bg-[#116466] px-5 text-sm font-bold text-white transition hover:bg-[#0d4f50] focus:outline-none focus:ring-2 focus:ring-[#116466]/25"
+            suppressHydrationWarning
+          >
+            Sign up for updates
+          </button>
         </motion.form>
       </div>
     </section>

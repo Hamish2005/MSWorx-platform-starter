@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckMark } from "@/components/CheckMark";
 import { fadeUp } from "@/lib/animation";
 import { proofPoints } from "@/lib/site-content";
 
@@ -17,21 +16,28 @@ export function AboutSection() {
             Built by a practitioner for the sector she came from.
           </h2>
           <p className="mt-5 text-base leading-7 text-[#4f5f5c]">
-            Michele S. Williams brings direct field experience, technical assistance,
-            and operations leadership to a platform built for the people doing
-            community work every day.
+            Michele S. Williams spent roughly twenty years inside homelessness
+            services. Not studying them. Inside them.
+          </p>
+          <p className="mt-4 text-base leading-7 text-[#4f5f5c]">
+            She led Continuum of Care operations. She delivered technical
+            assistance the Department of Housing and Urban Development
+            recognized. She sat across from people in crisis and ran the systems
+            meant to help them. She saw where those systems held. She saw where
+            they failed the people who could least afford the failure.
+          </p>
+          <p className="mt-4 text-base font-semibold leading-7 text-[#24302f]">
+            That is where MSWorx Learning comes from.
           </p>
         </motion.div>
         <motion.div className="grid gap-4" {...fadeUp}>
           {proofPoints.map((point) => (
             <div
-              key={point}
-              className="flex gap-3 rounded border border-[#e7dccd] bg-white p-5 text-sm leading-7 text-[#4f5f5c]"
+              key={point.title}
+              className="rounded border border-[#e7dccd] bg-white p-5 shadow-[0_12px_30px_rgba(36,48,47,0.05)]"
             >
-              <span className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded bg-[#116466] text-white">
-                <CheckMark />
-              </span>
-              {point}
+              <h3 className="text-xl font-bold text-[#24302f]">{point.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-[#4f5f5c]">{point.text}</p>
             </div>
           ))}
         </motion.div>

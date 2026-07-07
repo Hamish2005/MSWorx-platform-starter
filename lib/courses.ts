@@ -110,6 +110,26 @@ async function getAirtableCatalogCourses() {
     }));
 }
 
+function getMockCatalogCourses() {
+  return enrichCoursesWithPricing(
+    mockCourseCatalog.map((course) => ({
+      id: course.code,
+      title: course.title,
+      description: course.reason,
+      category: course.track,
+      certificate: true,
+      active: true,
+      credits: undefined,
+      imageUrl: undefined,
+      format: "Online",
+      lengthLabel: course.length,
+      lengthMinutes: null,
+      moduleCount: 0,
+      skyprepCourseId: course.code,
+    })),
+  );
+}
+
 export async function getCatalogCourses() {
   try {
     const courses = await mergeAirtableMetadata(await getWebsiteCourses());
@@ -135,29 +155,15 @@ export async function getCatalogCourses() {
     }
 
     if (!canUseMockCatalog) {
-      throw error;
+      console.error("Catalog integrations failed in production.", error);
+      return [];
     }
   }
 
   if (!canUseMockCatalog) {
-    throw new Error("Catalog integrations are not configured for production.");
+    console.error("Catalog integrations are not configured for production.");
+    return [];
   }
 
-  return enrichCoursesWithPricing(
-    mockCourseCatalog.map((course) => ({
-      id: course.code,
-      title: course.title,
-      description: course.reason,
-      category: course.track,
-      certificate: true,
-      active: true,
-      credits: undefined,
-      imageUrl: undefined,
-      format: "Online",
-      lengthLabel: course.length,
-      lengthMinutes: null,
-      moduleCount: 0,
-      skyprepCourseId: course.code,
-    })),
-  );
+  return getMockCatalogCourses();
 }

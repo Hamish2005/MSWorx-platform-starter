@@ -7,7 +7,7 @@ import { Reveal } from "@/components/Reveal";
 const audienceLinks = [
   ["Individual learners", "Course Catalog", "/courses"],
   ["Organizations", "Training Portals", "/organizations"],
-  ["Instructors", "Course Creation", "https://www.msworx.co/instructors"],
+  ["Instructors", "Course Creation", "/instructors"],
 ] as const;
 
 export function HomeHero() {
@@ -40,7 +40,7 @@ export function HomeHero() {
             <ButtonLink href="/organizations" variant="secondary">
               For Organizations
             </ButtonLink>
-            <ButtonLink href="https://www.msworx.co/instructors" variant="gold">
+            <ButtonLink href="/instructors" variant="gold">
               For Instructors
             </ButtonLink>
           </div>
@@ -49,11 +49,22 @@ export function HomeHero() {
         <Reveal className="hidden lg:block" x={24} y={0}>
           <div className="ml-auto max-w-md rounded border border-[#e7dccd] bg-white/95 p-6 shadow-[0_16px_40px_rgba(36,48,47,0.12)]">
             <div className="border-b border-[#e7dccd] pb-4">
-              <p className="text-sm font-bold text-[#116466]">Catalog launch focus</p>
-              <p className="mt-1 text-sm text-[#6d7875]">
-                Initial frontline courses with room for compliance and role-based paths.
-              </p>
+              <p className="text-sm font-bold text-[#116466]">Featured Courses</p>
             </div>
+            <a
+              href="https://shift.msworx.co/"
+              className="mt-5 block rounded border border-[#e7dccd] bg-[#FAF6EF] p-4 transition hover:border-[#BD9227] hover:bg-[#F5EBDD]"
+            >
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#BD9227]">
+                Featured series
+              </p>
+              <h2 className="mt-2 text-2xl font-bold leading-tight text-[#24302f]">
+                Navigating the Shift
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-[#4f5f5c]">
+                A four-module series for teams preparing for the 2026 HUD NOFO shift.
+              </p>
+            </a>
             <div className="mt-5 space-y-4">
               {audienceLinks.map(([label, value, href]) => (
                 <div key={label} className="flex items-center justify-between gap-4">

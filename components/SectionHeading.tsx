@@ -11,7 +11,7 @@ export function SectionHeading({
 }: {
   eyebrow: string;
   title: string;
-  description: string;
+  description?: string;
   tone?: "light" | "dark";
 }) {
   const isDark = tone === "dark";
@@ -32,9 +32,11 @@ export function SectionHeading({
       >
         {title}
       </h2>
-      <p className={`mt-4 text-base leading-7 ${isDark ? "text-white/82" : "text-[#4f5f5c]"}`}>
-        {description}
-      </p>
+      {description ? (
+        <p className={`mt-4 text-base leading-7 ${isDark ? "text-white/82" : "text-[#4f5f5c]"}`}>
+          {description}
+        </p>
+      ) : null}
     </motion.div>
   );
 }

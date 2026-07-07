@@ -267,7 +267,7 @@ export default function OrganizationsPage() {
           <div className="org-section-head">
             <Eyebrow>Why It Is Different</Eyebrow>
             <h2>
-              Five questions to ask <em>any</em> training provider
+              Six questions to ask <em>any</em> training provider
             </h2>
             <p>
               If the answer to any of these is vague, the training is generic.

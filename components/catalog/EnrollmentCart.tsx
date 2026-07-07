@@ -108,7 +108,7 @@ export function EnrollmentCart({
           {error ? <p className="mt-2 text-sm font-semibold text-[#9f2d20]">{error}</p> : null}
           {!error ? (
             <p className="mt-2 text-xs leading-5 text-[#4f5f5c]">
-              SkyPrep access will be created under this email with a username and
+              Course access will be created under this email with a username and
               temporary password.
             </p>
           ) : null}

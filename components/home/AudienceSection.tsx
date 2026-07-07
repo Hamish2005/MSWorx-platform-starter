@@ -11,7 +11,6 @@ export function AudienceSection() {
         <SectionHeading
           eyebrow="Choose your path"
           title="One front door for learners, teams, and instructors."
-          description="The homepage directs each audience to the right next step while the public catalog grows into the central buying surface."
         />
         <motion.div
           className="mt-10 grid gap-6 md:grid-cols-3"

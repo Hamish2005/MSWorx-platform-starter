@@ -15,7 +15,7 @@ export function CheckoutStatusNotice() {
       return {
         title: isFreeEnrollment ? "Enrollment complete" : "Checkout complete",
         message:
-          "Your course enrollment is being processed. If this is a new SkyPrep account, login details will be sent to the learner email address.",
+          "Your course enrollment is being processed. If this is a new learning account, login details will be sent to the learner email address.",
       };
     }
 

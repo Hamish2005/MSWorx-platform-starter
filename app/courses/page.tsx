@@ -88,7 +88,7 @@ export default async function CoursesPage() {
               </div>
             </div>
             <p className="mt-5 text-sm leading-6 text-[#4f5f5c]">
-              Use the search and filters below to narrow the live SkyPrep catalog.
+              Use the search and filters below to find the right course.
             </p>
           </Reveal>
         </div>
@@ -101,7 +101,6 @@ export default async function CoursesPage() {
           <SectionHeading
             eyebrow="Launch catalog"
             title="Start with the courses closest to the work."
-            description="These courses are pulled from SkyPrep and shaped for the public catalog."
           />
 
           <CourseCatalog courses={courses} />

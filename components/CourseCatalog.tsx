@@ -130,7 +130,7 @@ export function CourseCatalog({ courses }: { courses: WebsiteCourse[] }) {
     }
 
     if (!email.includes("@")) {
-      setCheckoutError("Enter the learner email so SkyPrep can enroll the right person.");
+      setCheckoutError("Enter the learner email so MSWorx can enroll the right person.");
       return;
     }
 
@@ -207,9 +207,13 @@ export function CourseCatalog({ courses }: { courses: WebsiteCourse[] }) {
         </div>
       ) : (
         <div className="mt-8 rounded border border-[#e7dccd] bg-white p-8 text-center">
-          <h2 className="text-2xl font-bold text-[#24302f]">No courses found</h2>
+          <h2 className="text-2xl font-bold text-[#24302f]">
+            {courses.length === 0 ? "Catalog is temporarily unavailable" : "No courses found"}
+          </h2>
           <p className="mt-3 text-sm leading-6 text-[#4f5f5c]">
-            Try a different search term or clear the filters.
+            {courses.length === 0
+              ? "Course data could not be loaded. Check the deployment environment variables."
+              : "Try a different search term or clear the filters."}
           </p>
         </div>
       )}
