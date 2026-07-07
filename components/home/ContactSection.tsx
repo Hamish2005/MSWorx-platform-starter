@@ -1,9 +1,36 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animation";
 
 export function ContactSection() {
+  const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">("idle");
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("pending");
+
+    const formData = new FormData(event.currentTarget);
+
+    try {
+      const response = await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error("Newsletter signup failed.");
+      }
+
+      event.currentTarget.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section id="contact" className="px-5 py-20 sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 rounded border border-[#e7dccd] bg-white p-6 shadow-[0_12px_30px_rgba(36,48,47,0.06)] sm:p-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
@@ -22,10 +49,8 @@ export function ContactSection() {
         <motion.form
           name="newsletter-signup"
           className="grid gap-3"
-          action="/?newsletter=success#contact"
           method="post"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
           {...fadeUp}
         >
           <input type="hidden" name="form-name" value="newsletter-signup" />
@@ -60,11 +85,22 @@ export function ContactSection() {
           />
           <button
             type="submit"
+            disabled={status === "pending"}
             className="min-h-12 rounded bg-[#116466] px-5 text-sm font-bold text-white transition hover:bg-[#0d4f50] focus:outline-none focus:ring-2 focus:ring-[#116466]/25"
             suppressHydrationWarning
           >
-            Sign up for updates
+            {status === "pending" ? "Signing up..." : "Sign up for updates"}
           </button>
+          {status === "success" ? (
+            <p className="text-sm font-semibold text-[#116466]">
+              Thanks. You&apos;re on the MSWorx Learning update list.
+            </p>
+          ) : null}
+          {status === "error" ? (
+            <p className="text-sm font-semibold text-[#9f2d20]">
+              Something went wrong. Please try again.
+            </p>
+          ) : null}
         </motion.form>
       </div>
     </section>
