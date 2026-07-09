@@ -26,6 +26,7 @@ export function ContactSection() {
 
       event.currentTarget.reset();
       setStatus("success");
+      window.location.href = "/thank-you?source=newsletter";
     } catch {
       setStatus("error");
     }
